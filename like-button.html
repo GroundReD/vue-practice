@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>LikeButton</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div v-if="liked">clicked Like Button</div>
+        <button v-else v-on:click="onClickButton">{{ message }}</button>
+    </div>
+    <div>
+        <h1>vue.js 의 장점</h1>
+        <ol>
+            <li>데이터만 수정하면 화면은 Vue가 알아서 바꿔줌.</li>
+            <li>el, data, methods 들은 꼭 있어줘야함</li>
+            <li>v-if, v-else, v-else-if 등은 인접한 형제태그일때 사용할 수 있음</li>
+            <li>v-if 가 사용된 태그에는 자바스크립트 코드를 쓸 수 있음</li>
+        </ol>
+    </div>
+</body>
+<script>
+    const app = new Vue({
+        el: '#root', 
+        data : {
+            liked : false,
+            message : 'Like!'
+        },
+        methods : {
+            //this는 데이터를 가리킴
+            onClickButton() {
+                this.liked=true;
+            }
+        }
+    })
+</script>
+</html>
