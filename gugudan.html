@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>구구단</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div>{{first}} 곱하기 {{second}}는?</div>
+        <form v-on:submit="onSubmitForm">
+            <!-- input tag에 입력된 값을 value로 넘겨줌. 양방향 바인딩-->
+            <!-- vue 에서 태그에 직접 접근할때 ref 사용 -->
+            <input type="number" v-model="value" ref="answer">
+            <button type="submit">입력!</button>
+        </form>
+        <div id="input_value">{{value}}</div>
+        <div id="result">
+            {{result}}
+        </div>
+    </div>
+    <script>
+        const app = new Vue({
+            el : '#root',
+            data : {
+                first   : Math.ceil(Math.random() * 9),
+                second  : Math.ceil(Math.random() * 9),
+                value   : '',
+                result  : '',
+            },
+            methods : {
+                onSubmitForm(e) {
+                    //submit의 새로고침을 막기위해
+                    e.preventDefault();
+                    if(this.first * this.second === parseInt(this.value)) {
+                        this.result = '정답';
+                        this.refreshNum();
+                        this.getFocus();
+                    } else {
+                        this.result = '땡';
+                    }
+                },
+                refreshNum() {
+                    this.first = Math.ceil(Math.random() * 9);
+                    this.second = Math.ceil(Math.random() * 9);
+                },
+                getFocus() {
+                    // $를 앞에 붙여 태그에 접근. 남용은 안좋음
+                    // this.$ref.anser.value = '123' 같은 사용은 안 좋음
+                    // 데이터와 화면의 값이 달라지기 때문
+                    this.$ref.answer = focus();
+                }
+            },
+        });
+    </script>
+</body>
+</html>
