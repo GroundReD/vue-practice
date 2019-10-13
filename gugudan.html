@@ -48,9 +48,9 @@
                 },
                 getFocus() {
                     // $를 앞에 붙여 태그에 접근. 남용은 안좋음
-                    // this.$ref.anser.value = '123' 같은 사용은 안 좋음
+                    // this.$refs.anser.value = '123' 같은 사용은 안 좋음
                     // 데이터와 화면의 값이 달라지기 때문
-                    this.$ref.answer = focus();
+                    this.$refs.answer.focus();
                 }
             },
         });
